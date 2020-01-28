@@ -17,12 +17,13 @@ class Move:
         self._toRow : int = toRow
         self._toCol : int = toCol
         
+        # TODO: not all diagonals are allowed!
         dist : int = max(abs(toRow-fromRow),abs(toCol-fromCol))
         if mark == Const.MARK_GOAT:
             if dist > 1:
                 raise ValueError("goats can only place or move 1")
-            elif dist < 1 or dist > 2:
-                raise ValueError("tigers can only move 1 or 2 (capture)")
+        elif dist < 1 or dist > 2:
+            raise ValueError("tigers can only move 1 or 2 (capture)")
 
     @property
     def placement(self) -> bool:

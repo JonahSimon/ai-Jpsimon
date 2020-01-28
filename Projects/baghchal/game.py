@@ -15,6 +15,7 @@ class Game:
         self._state : int = Const.STATE_TURN_GOAT
         self._placed : int = 0 # number of goats placed
         self._captured : int = 0 # number of goats captured
+        self._unplayed = Const.ROWS*Const.COLS - 4
 
     @property
     def over(self) -> bool:
