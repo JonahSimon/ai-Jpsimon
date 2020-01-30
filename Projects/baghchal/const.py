@@ -1,9 +1,28 @@
-from typing import Set
+from typing import Set,Dict,Tuple,List
+
+def ConstDirCache(rows : int, cols : int) -> Dict[Tuple[int,int],List[Tuple[int,int]]]:
+    cache : Dict[Tuple[int,int],List[Tuple[int,int]]] = {}
+    for row in range(rows):
+        for col in range(cols):
+            dirs : List[Tuple[int,int]] = []
+            if row > 0: dirs.append((-1,0))
+            if row < rows-1: dirs.append((1,0))
+            if col > 0: dirs.append((0,-1))
+            if col < cols-1: dirs.append((0,1))
+            if (row + col) % 2 == 0:
+                if (row > 0 and col > 0): dirs.append((-1,-1))
+                if (row < rows-1 and col < cols-1): dirs.append((1,1))
+                if (row > 0 and col < cols-1): dirs.append((-1,1))
+                if (row < rows-1 and col > 0): dirs.append((1,-1))
+            cache[(row,col)]=dirs
+    return cache
+
 
 class Const:
     ROWS : int = 5
     COLS : int = 5
     GOAT_CAPTURES_FOR_TIGER_WIN : int = 5
+    MAX_MOVES_WITHOUT_CAPTURE : int = 50
     GOAT_PLACEMENTS : int = 20
 
     MARK_NONE : int = 0
@@ -18,6 +37,8 @@ class Const:
     
     STATES : Set[int] = set([STATE_TURN_GOAT, STATE_TURN_TIGER,STATE_WIN_GOAT,STATE_WIN_TIGER,STATE_DRAW])
     MARKS : Set[int] = set([MARK_NONE,MARK_GOAT,MARK_TIGER])
+
+    DIRS : Dict[Tuple[int,int],List[Tuple[int,int]]] = ConstDirCache(ROWS,COLS)
 
     @classmethod
     def rowOk(cls,row : int) -> None:

@@ -4,7 +4,7 @@ from const import Const
 
 
 class ConstTest(unittest.TestCase):
-
+ 
     def testRow(self):
         Const.rowOk(0)
         Const.rowOk(Const.ROWS-1)

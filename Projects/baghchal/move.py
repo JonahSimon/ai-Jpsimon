@@ -17,8 +17,15 @@ class Move:
         self._toRow : int = toRow
         self._toCol : int = toCol
         
-        # TODO: not all diagonals are allowed!
         dist : int = max(abs(toRow-fromRow),abs(toCol-fromCol))
+        diagonal : bool = \
+            (fromRow + fromCol) % 2 == 0 and \
+            (toRow + toCol) % 2 == 0 and \
+            (abs(fromRow-toRow) == abs(fromCol-toCol))
+        straight : bool = (fromRow == toRow) or \
+                (fromCol == toCol)
+        if (not straight) and (not diagonal):
+            raise ValueError("impossible move") 
         if mark == Const.MARK_GOAT:
             if dist > 1:
                 raise ValueError("goats can only place or move 1")
@@ -27,11 +34,12 @@ class Move:
 
     @property
     def placement(self) -> bool:
-        return self._toRow == self._fromRow and self._toCol == self._toCol
+        return self._toRow == self._fromRow and self._toCol == self._fromCol
+
     @property
     def capture(self) -> bool:
         return max(abs(self._toRow-self._fromRow),abs(self._toCol-self._fromCol)) == 2
-
+    
     @property
     def fromRow(self) -> int:
         return self._fromRow
