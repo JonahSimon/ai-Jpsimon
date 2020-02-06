@@ -1,10 +1,14 @@
+from elusiveGoatAgent import elusiveGoatAgent
+from hungrytigeragent import HungryTigerAgent
 from game import Game
 import random
+from matchup import Matchup
+from hungrytigeragent import HungryTigerAgent
+from stats import Stats
 
-game = Game()
-
-while not game.over:
-    moves = game.moves
-    move = random.choice(moves)
-    game.play(move)
-    print(game)
+matchup = Matchup()
+#matchup.tigerAgent = HungryTigerAgent(matchup.game)
+matchup.goatAgent = elusiveGoatAgent(matchup.game)
+stats = Stats(matchup, 1000)
+stats.playAll()
+stats.summarize()
