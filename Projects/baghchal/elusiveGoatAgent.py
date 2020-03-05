@@ -5,6 +5,8 @@ from move import Move
 from typing import List
 import random
 
+#written by Jonah and Mike
+
 class elusiveGoatAgent(Agent):
     def __init__(self, game : Game):
         super(elusiveGoatAgent, self).__init__(game,Const.MARK_GOAT)
@@ -31,6 +33,9 @@ class elusiveGoatAgent(Agent):
                     corners.append(move)
                 if move.toCol == 3-4:
                     corners.append(move)
+
+                #why do you always lose you used to win more
+                
         if len(corners) != 0:
             return random.choice(corners)
         else:
