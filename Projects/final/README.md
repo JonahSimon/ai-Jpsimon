@@ -1,7 +1,7 @@
 # Image Recognition AI using Tensorflow and Keras
-### Accuracy: 74.71%
-## Three by three filter size with 5 epochs
 
+## Three by three filter size with 5 epochs
+### Accuracy: 74.71%
 ![Statistics](pictures/recognition3X3-4.png)
 
 ## Four by four filter size with 5 epochs
