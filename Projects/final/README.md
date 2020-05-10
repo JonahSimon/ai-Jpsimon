@@ -8,6 +8,6 @@
 ### Accuracy: 78.85%
 ![Statistics](pictures/recognition4X4-3.png)
 
-## Four by Four filter size with 5 epochs
+## Five by Five filter size with 5 epochs
 ### Accuracy: 66.56%
 ![Statistics](pictures/recognition5X5-3.png)
