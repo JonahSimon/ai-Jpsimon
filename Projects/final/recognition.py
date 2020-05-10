@@ -30,7 +30,7 @@ model = Sequential()
 
 # first convolution layer, 32 channels/filters and its a 3 by 3 filter size. 
 # Padding same just means we arent changing the size
-model.add(Conv2D(32, (3, 3), input_shape=X_train.shape[1:], padding='same'))
+model.add(Conv2D(32, (5, 5), input_shape=X_train.shape[1:], padding='same'))
 
 # most common activation is relu
 model.add(Activation('relu'))
@@ -45,7 +45,7 @@ model.add(Dropout(0.2))
 model.add(BatchNormalization())
 
 # another convolution with a bigger filter size 64 instead of 32
-model.add(Conv2D(64, (4, 4), padding='same'))
+model.add(Conv2D(64, (5, 5), padding='same'))
 model.add(Activation('relu'))
 
 # first pooling layer. helps the network learn more releant patterns. 
@@ -54,14 +54,14 @@ model.add(Dropout(0.2))
 model.add(BatchNormalization())
 
 # repeat to give more representation.
-model.add(Conv2D(64, (4, 4), padding='same'))
+model.add(Conv2D(64, (5, 5), padding='same'))
 model.add(Activation('relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.2))
 model.add(BatchNormalization())
 
 # size up again for filters. try to keep these as powers of 2    
-model.add(Conv2D(128, (4, 4), padding='same'))
+model.add(Conv2D(128, (5, 5), padding='same'))
 model.add(Activation('relu'))
 model.add(Dropout(0.2))
 model.add(BatchNormalization())
@@ -71,7 +71,7 @@ model.add(Flatten())
 model.add(Dropout(0.2))
 
 # create the first dense layers. 
-# We cut down the 256 a few times until it becomes the number of classes in the set of data  in this case 10
+# We cut down the 256 a few times until it becomes the number of classes in the set of data in this case 10 
 model.add(Dense(256, kernel_constraint=maxnorm(3)))
 model.add(Activation('relu'))
 model.add(Dropout(0.2))
