@@ -6,7 +6,7 @@
 
 ## Three by three filter size with another convolution layer and 10 epochs
 ### Accuracy: 81.20% 
-![Statistics](picutres/recognition3X3-10ep.png)
+![Statistics](pictures/recognition3X3-10ep.png)
 
 ## Four by four filter size with 5 epochs
 ### Accuracy: 78.85%
