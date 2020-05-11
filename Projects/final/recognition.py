@@ -30,7 +30,7 @@ model = Sequential()
 
 # first convolution layer, 32 channels/filters and its a 3 by 3 filter size. 
 # Padding same just means we arent changing the size
-model.add(Conv2D(32, (5, 5), input_shape=X_train.shape[1:], padding='same'))
+model.add(Conv2D(32, (3, 3), input_shape=X_train.shape[1:], padding='same'))
 
 # most common activation is relu
 model.add(Activation('relu'))
@@ -45,7 +45,7 @@ model.add(Dropout(0.2))
 model.add(BatchNormalization())
 
 # another convolution with a bigger filter size 64 instead of 32
-model.add(Conv2D(64, (5, 5), padding='same'))
+model.add(Conv2D(64, (3, 3), padding='same'))
 model.add(Activation('relu'))
 
 # first pooling layer. helps the network learn more releant patterns. 
@@ -54,14 +54,20 @@ model.add(Dropout(0.2))
 model.add(BatchNormalization())
 
 # repeat to give more representation.
-model.add(Conv2D(64, (5, 5), padding='same'))
+model.add(Conv2D(64, (3, 3), padding='same'))
 model.add(Activation('relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.2))
 model.add(BatchNormalization())
 
 # size up again for filters. try to keep these as powers of 2    
-model.add(Conv2D(128, (5, 5), padding='same'))
+model.add(Conv2D(128, (3, 3), padding='same'))
+model.add(Activation('relu'))
+model.add(Dropout(0.2))
+model.add(BatchNormalization())
+
+# One more time
+model.add(Conv2D(256, (3, 3), padding='same'))
 model.add(Activation('relu'))
 model.add(Dropout(0.2))
 model.add(BatchNormalization())
@@ -89,7 +95,7 @@ model.add(Dense(class_num))
 model.add(Activation('softmax'))
 
 # the number of rounds of training that will occure 
-epochs = 5
+epochs = 10
 
 # tunes weights of the network to approach the lowest loss 
 # Adam is the most common because it works well for most networks. 
